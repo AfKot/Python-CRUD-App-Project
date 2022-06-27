@@ -1,7 +1,11 @@
 /venv
 *.*
+*.db
+/__pycache__
 !.gitignore
 !*.py
 !requirements.txt
 !*.html
 !startup.sh
+!*.JPG
+!*.xlsx
