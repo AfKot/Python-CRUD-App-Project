@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %} 
+{% for directors in Directors %}
+<p> ID: {{directors.id}} </p>
+<p> Director: {{ directors.dir_name }} </p>
+<!-- <p> Movies: {{ directors.dirID }} </p> -->
+<form action="{{ url_for('deleteD', id = directors.id) }}">
+<button type="Delete">Delete Director</button>
+</form> <br> 
+{% endfor %}
+{% endblock body%}

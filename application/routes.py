@@ -8,6 +8,12 @@ def home():
     movies = Movies.query.all()
     return render_template("home.html", Movies=movies)
 
+@app.route('/viewDirectors')
+def viewD():
+    directors = Directors.query.all()
+    return render_template("viewDirectors.html", Directors=directors)
+
+
 @app.route('/addMovie', methods=['GET', 'POST'])
 def add():
     form = MovieForm()
@@ -34,5 +40,20 @@ def addD():
             )
             db.session.add(directorData)
             db.session.commit()
-            return redirect(url_for('home'))
+            return redirect(url_for('viewD'))
     return render_template('addDirector.html', form=form)
+
+@app.route('/delete/<id>')
+def delete(id):
+    movie_del = Movies.query.get(id)
+    db.session.delete(movie_del)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+@app.route('/deleteD/<id>')
+def deleteD(id):
+    director_del = Directors.query.get(id)
+    db.session.delete(director_del)
+    db.session.commit()
+    return redirect(url_for('viewD'))
+

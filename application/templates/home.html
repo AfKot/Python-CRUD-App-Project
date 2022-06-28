@@ -5,5 +5,8 @@
 <p> Movie: {{ movies.movie_name }} </p>
 <p> Release Year: {{ movies.rel_yr }} </p>
 <p> Director: {{ movies.movie.dir_name }} </p> <br>
+<form action="{{ url_for('delete', id = movies.id) }}">
+<button type="Delete">Delete Movie</button> 
+</form>
 {% endfor %}
 {% endblock body%}
