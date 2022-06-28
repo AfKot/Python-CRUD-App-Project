@@ -57,3 +57,17 @@ def deleteD(id):
     db.session.commit()
     return redirect(url_for('viewD'))
 
+@app.route('/updateMovie/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    form = MovieForm()    
+    movies = Movies.query.get(id)
+    if form.validate_on_submit():
+        movies.movie_name = form.movie_name.data
+        movies.rel_yr = form.rel_yr.data
+        db.session.commit()
+        return redirect(url_for('home'))
+    elif request.method == 'GET':
+        form.movie_name.data = movies.movie_name
+        form.rel_yr.data = movies.rel_yr
+        db.session.commit()
+    return render_template('updateMovie.html', form=form)

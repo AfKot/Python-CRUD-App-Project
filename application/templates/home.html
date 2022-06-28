@@ -8,5 +8,8 @@
 <form action="{{ url_for('delete', id = movies.id) }}">
 <button type="Delete">Delete Movie</button> 
 </form>
+<form action="{{ url_for('update', id = movies.id) }}">
+<button type="Update">Update Movie</button> 
+</form>
 {% endfor %}
 {% endblock body%}
