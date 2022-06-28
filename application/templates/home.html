@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block body %} 
 {% for movies in Movies %}
-<p> ID: {{movies.id}} </p>
-<p> Movie: {{ movies.movie_name }} </p>
-<p> Release Year: {{ movies.rel_yr }} </p>
-<p> Director: {{ movies.dirID }}</p>
+<p> ID: {{movies.id}} </p> <br>
+<p> Movie: {{ movies.movie_name }} </p> <br>
+<p> Release Year: {{ movies.rel_yr }} </p> <br>
+<p> Director: {{ movies.dirID }} </p> <br>
 {% endfor %}
 {% endblock body%}
