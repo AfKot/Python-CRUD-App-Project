@@ -74,4 +74,16 @@ def update(id):
         form.director.data = movies.dirID
         db.session.commit()
     return render_template('updateMovie.html', form=form, oldMovie=Movies.query.get(id).movie_name)
-    
+
+@app.route('/updateDirector/<int:id>', methods=['GET', 'POST'])
+def updateD(id):
+    form = DirectorForm()    
+    directors = Directors.query.get(id)
+    if form.validate_on_submit():
+        directors.dir_name = form.dir_name.data
+        db.session.commit()
+        return redirect(url_for('viewD'))
+    elif request.method == 'GET':
+        form.dir_name.data = directors.dir_name
+        db.session.commit()
+    return render_template('updateDirector.html', form=form, oldDir=Directors.query.get(id).dir_name)

@@ -3,9 +3,12 @@
 {% for directors in Directors %}
 <p> ID: {{directors.id}} </p>
 <p> Director: {{ directors.dir_name }} </p>
-<p> Movies: {{ directors.movie }} </p>
+<!-- <p> Movies: {{ directors.movie }} </p> -->
 <form action="{{ url_for('deleteD', id = directors.id) }}">
 <button type="Delete">Delete Director</button>
-</form> <br> 
+</form>
+<form action="{{ url_for('updateD', id = directors.id) }}">
+<button type="Update">Update Director</button> 
+</form>
 {% endfor %}
 {% endblock body%}
