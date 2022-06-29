@@ -4,11 +4,11 @@
 <p> ID: {{movies.id}} </p>
 <p> Movie: {{ movies.movie_name }} </p>
 <p> Release Year: {{ movies.rel_yr }} </p>
-<p> Director: {{ movies.movie.dir_name }} </p>
-<form action="{{ url_for('delete', id = movies.id) }}">
+<p> Director: <a href="{{ url_for('dirMovs', id = movies.dirID) }}">{{ movies.movie.dir_name }}</a></p>
+<form action="{{ url_for('delete', id = movies.id) }}" class="butDis">
 <button type="Delete">Delete Movie</button> 
 </form>
-<form action="{{ url_for('update', id = movies.id) }}">
+<form action="{{ url_for('update', id = movies.id) }}" class="butDis">
 <button type="Update">Update Movie</button> 
 </form> <br>
 {% endfor %}

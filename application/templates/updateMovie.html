@@ -7,11 +7,9 @@
 <div class="form">
     <form method="POST", action="">
         {{ form.hidden_tag() }}
-        {{ form.movie_name.label }} {{ form.movie_name }}
-        <br>
-        {{ form.rel_yr.label }} {{ form.rel_yr }}
-        <br>
-        {{ form.director.label }} {{ form.director }}
+        <p>{{ form.movie_name.label }} {{ form.movie_name }}</p>        
+        <p>{{ form.rel_yr.label }} {{ form.rel_yr }}</p>
+        <p>{{ form.director.label }} {{ form.director }}</p>
         <br>
         {{ form.submit }}
     </form>

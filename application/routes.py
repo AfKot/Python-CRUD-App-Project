@@ -13,6 +13,16 @@ def viewD():
     directors = Directors.query.all()
     return render_template("viewDirectors.html", Directors=directors)
 
+@app.route('/directorsMovies/<id>')
+def dirMovs(id):
+    directors = Directors.query.get(id)
+    movs = []
+    movie = Movies.query.all()
+    for movies in movie:
+        if movies.dirID == directors.id :
+            movs.append(movies.movie_name)
+            a = ", ".join(movs)   
+    return render_template("directorsMovies.html", Directors=directors, Movies=a)
 
 @app.route('/addMovie', methods=['GET', 'POST'])
 def add():
