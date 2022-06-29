@@ -23,7 +23,7 @@ def dirMovs(id):
             movs.append(movies.movie_name)
             a = ", ".join(movs) 
         elif not movs:
-            return 'No Movies To Show'  
+            return render_template("noMovies.html")
     return render_template("directorsMovies.html", Directors=directors, Movies=a)
 
 @app.route('/addMovie', methods=['GET', 'POST'])
