@@ -20,11 +20,11 @@ def dirMovs(id):
     movie = Movies.query.all()
     for movies in movie:
         if movies.dirID == directors.id :
-            movs.append(movies.movie_name)
-            a = ", ".join(movs) 
-        elif not movs:
-            return render_template("noMovies.html")
-    return render_template("directorsMovies.html", Directors=directors, Movies=a)
+            movs.append(movies.movie_name) 
+    if movs == []:
+        return render_template("noMovies.html")
+    movs = ", ".join(movs)         
+    return render_template("directorsMovies.html", Directors=directors, Movies=movs)
 
 @app.route('/addMovie', methods=['GET', 'POST'])
 def add():

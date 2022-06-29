@@ -12,7 +12,8 @@ db.session.commit()
 
 sample_movies = Movies(
     movie_name = "Sample Movie",
-    rel_yr = 2012
+    rel_yr = 2012 ,
+    dirID = 1
 )
 db.session.add(sample_movies)
 db.session.commit()
