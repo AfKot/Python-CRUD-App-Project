@@ -3,13 +3,15 @@
     <title> Update Movie Details </title>
 </head>
 {% block body %}
-<p>Update Movie</p>
+<p>Update Movie: {{ oldMovie }}</p>
 <div class="form">
     <form method="POST", action="">
         {{ form.hidden_tag() }}
         {{ form.movie_name.label }} {{ form.movie_name }}
         <br>
         {{ form.rel_yr.label }} {{ form.rel_yr }}
+        <br>
+        {{ form.director.label }} {{ form.director }}
         <br>
         {{ form.submit }}
     </form>
