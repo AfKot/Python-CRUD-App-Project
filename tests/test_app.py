@@ -52,6 +52,11 @@ class TestAddDir(TestBase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'TestDirector', response.data)
     
+    def test_view_add_director(self):
+        response = self.client.get(url_for('addD'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Director Name", response.data)
+    
     def test_no_movs(self):
         response = self.client.get(url_for('noMovies'))
         self.assertEqual(response.status_code, 200)
@@ -69,6 +74,13 @@ class TestAddMovie(TestBase):
         )
         assert Movies.query.filter_by(movie_name = "TestMovie1").first().id == 2
     
+    def test_view_add_movie(self):
+        response = self.client.get(url_for('add'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Movie Title", response.data)
+
+
+
 class TestViewHome(TestBase):
     def test_home(self):
         response = self.client.get(url_for('home'))
@@ -111,3 +123,16 @@ class TestUpdateMovie(TestBase):
                 )
         )
         assert Movies.query.filter_by(movie_name = "TestMovie1").first().id == 1
+
+
+class TestDelDir(TestBase):
+    def test_delDirector(self):
+        response = self.client.get(url_for('deleteD', id=1))
+        assert len(Directors.query.all()) == 0
+
+
+
+class TestDelMov(TestBase):
+    def test_delMovie(self):
+        response = self.client.get(url_for('delete', id=1))
+        assert len(Movies.query.all()) == 0
