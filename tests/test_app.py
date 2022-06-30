@@ -36,6 +36,7 @@ class TestBase(TestCase):
         db.session.remove()
         db.drop_all()
 
+
 class TestAddDir(TestBase):
     def test_add_director(self):
         response = self.client.post(
@@ -46,10 +47,67 @@ class TestAddDir(TestBase):
         )
         assert Directors.query.filter_by(dir_name = "TestDir2").first().id == 2
 
-        
+    def test_view_director(self):
+        response = self.client.get(url_for('viewD'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'TestDirector', response.data)
     
-class TestViews(TestBase):
+    def test_no_movs(self):
+        response = self.client.get(url_for('noMovies'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"No Movies to Display!", response.data)
+
+
+class TestAddMovie(TestBase):
+    def test_add_movie(self):
+        response = self.client.post(
+            url_for('add'),
+            data = dict(
+                movie_name = "TestMovie1",
+                dirID = 1
+                )
+        )
+        assert Movies.query.filter_by(movie_name = "TestMovie1").first().id == 2
+    
+class TestViewHome(TestBase):
     def test_home(self):
         response = self.client.get(url_for('home'))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Director:", response.data)
+
+class TestDirMovies(TestBase):
+    def test_dir_movs(self):
+        response = self.client.get(url_for('dirMovs', id=1))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Movies: ", response.data)
+
+class TestUpdateDirector(TestBase):
+    def testUpdateDir(self):
+        response = self.client.get(url_for('updateD', id=1))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Update Director:', response.data)
+    
+    def testUpdateDirpost(self):
+        response = self.client.post(
+            url_for('updateD', id=1),
+            data = dict(
+                dir_name = "TestDir",
+                )
+        )
+        assert Directors.query.filter_by(dir_name = "TestDir").first().id == 1
+
+class TestUpdateMovie(TestBase):
+    def testUpdateMov(self):
+        response = self.client.get(url_for('update', id=1))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Update Movie:', response.data)
+    
+    def testUpdateMovpost(self):
+        response = self.client.post(
+            url_for('update', id=1),
+            data = dict(
+                movie_name = "TestMovie1",
+                
+                )
+        )
+        assert Movies.query.filter_by(movie_name = "TestMovie1").first().id == 1

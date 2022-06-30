@@ -13,6 +13,10 @@ def viewD():
     directors = Directors.query.all()
     return render_template("viewDirectors.html", Directors=directors)
 
+@app.route('/noMovies')
+def noMovies():
+    return render_template("noMovies.html")
+
 @app.route('/directorsMovies/<id>')
 def dirMovs(id):
     directors = Directors.query.get(id)
@@ -22,7 +26,7 @@ def dirMovs(id):
         if movies.dirID == directors.id :
             movs.append(movies.movie_name) 
     if movs == []:
-        return render_template("noMovies.html")
+        return url_for('noMovies')
     movs = ", ".join(movs)         
     return render_template("directorsMovies.html", Directors=directors, Movies=movs)
 
@@ -31,15 +35,15 @@ def add():
     form = MovieForm()
     form.director.choices = [(directors.id,directors.dir_name) for directors in Directors.query.all()]
     if request.method == 'POST':
-        if form.validate_on_submit():
-            movieData = Movies(
+        # if form.validate_on_submit():
+        movieData = Movies(
                 movie_name = form.movie_name.data,
                 rel_yr = form.rel_yr.data,
                 dirID = form.director.data
             )
-            db.session.add(movieData)
-            db.session.commit()
-            return redirect(url_for('home'))
+        db.session.add(movieData)
+        db.session.commit()
+        return redirect(url_for('home'))
     return render_template('addMovie.html', form=form)
 
 @app.route('/addDirector', methods=['GET', 'POST'])
@@ -74,7 +78,7 @@ def update(id):
     form = MovieForm()    
     movies = Movies.query.get(id)
     form.director.choices = [(directors.id,directors.dir_name) for directors in Directors.query.all()]
-    if form.validate_on_submit():
+    if request.method == 'POST':
         movies.movie_name = form.movie_name.data
         movies.rel_yr = form.rel_yr.data
         movies.dirID = form.director.data
