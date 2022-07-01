@@ -9,3 +9,4 @@
 !startup.sh
 !*.JPG
 !*.xlsx
+!jenkins.sh
