@@ -4,7 +4,7 @@ Description= Running the test as a service
 [Service]
 User=jenkins
 WorkingDirectory=/home/jenkins/.jenkins/workspace/python-CRUD-project
-Environment=DATABASE_URI=DATABASE_URI
+Environment=os.getenv("DATABASE_URI")
 ExecStart=/bin/sh \
     -c 'python3 -m venv venv &&\
     . ./venv/bin/activate &&\
