@@ -11,3 +11,5 @@
 !*.xlsx
 !jenkins.sh
 !runTest.sh
+!jenkinsRunApp.service
+!jenkinsExecuteTest.txt
