@@ -10,3 +10,4 @@
 !*.JPG
 !*.xlsx
 !jenkins.sh
+!runTest.sh
