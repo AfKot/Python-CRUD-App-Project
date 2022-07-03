@@ -34,6 +34,8 @@ git clone <the ssh code you copied>
 
 4.  You can now run the app.py and check the testing coverage of the application using the runTest.sh script!
 
+5.  Open the app on the external ip address on port 5000 and enjoy the app!
+
 
 Testing: 
 -	Done through Jenkins
