@@ -46,6 +46,7 @@ Example test:
 
 The following test was to to see if the information in the table of directors is equal to what we expect. We are checking to see that the director with id=2 within the table has the name "TestDir2". If this information is what we expect, we have successfully passed. 
 
+```
 class TestAddDir(TestBase):
     def test_add_director(self):
         response = self.client.post(
@@ -55,6 +56,7 @@ class TestAddDir(TestBase):
                 )
         )
         assert Directors.query.filter_by(dir_name = "TestDir2").first().id == 2
+```
 
 We successfully passed this test along with all the others, acheiving a 99% coverage and 14/14 tests passed.
 
