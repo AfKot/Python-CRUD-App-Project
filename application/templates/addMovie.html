@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+<head> 
+    <title> Add Movies </title>
+</head>
+{% block body %}
+<h3>Add a Movie</h3>
+<div class="form">
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        <p>{{ form.movie_name.label }} {{ form.movie_name }}</p>
+        <p>{{ form.rel_yr.label }} {{ form.rel_yr }}</p>
+        <p>{{ form.director.label }} {{ form.director }}</p>
+        <br>
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+<head> 
+    <title> Add Director</title>
+</head>
+{% block body %}
+<h3>Add a Director</h3>
+<div class="form">
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        <p>{{ form.dir_name.label }} {{ form.dir_name }}</p>
+        <br>
+        {{ form.submit }}
+    </form>
+</div>
+
+{% endblock body %}

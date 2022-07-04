@@ -1,0 +1,15 @@
+/venv
+*.*
+*.db
+/__pycache__
+!.gitignore
+!*.py
+!requirements.txt
+!*.html
+!startup.sh
+!*.JPG
+!*.xlsx
+!jenkins.sh
+!runTest.sh
+!jenkinsRunApp.service
+!jenkinsExecuteTest.txt
