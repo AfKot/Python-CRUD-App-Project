@@ -13,3 +13,6 @@
 !runTest.sh
 !jenkinsRunApp.service
 !jenkinsExecuteTest.txt
+!docker-compose.yaml
+!nginx.conf
+!CreateTable.sql
